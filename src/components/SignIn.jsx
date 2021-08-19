@@ -5,6 +5,8 @@ import FormikTextInput from "./FormikTextInput";
 import Text from "./Text";
 import theme from "../theme";
 import * as yup from "yup";
+import useSignIn from "../hooks/useSignIn";
+import { useHistory } from "react-router-native";
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -59,8 +61,18 @@ const validationSchema = yup.object().shape({
 });
 
 const SignIn = () => {
-  const onSubmit = (values) => {
-    console.log(values);
+  const [signIn] = useSignIn();
+  const history = useHistory();
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+
+    try {
+      await signIn({ username, password });
+      history.push("/");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
     padding: 4,
     paddingTop: 3,
   },
+  description: {
+    paddingTop: 6,
+  },
 });
 
 const RepoInfo = ({ item }) => {
@@ -42,7 +45,7 @@ const RepoInfo = ({ item }) => {
         >
           {item.fullName}
         </Text>
-        <Text style={[{ paddingTop: 6 }]}>{item.description}</Text>
+        <Text style={[styles.description]}>{item.description}</Text>
         <View style={styles.languageBox}>
           <Text style={[styles.language]}>{item.language}</Text>
         </View>
